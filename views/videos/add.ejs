@@ -1,0 +1,33 @@
+<h1>Add Video</h1>
+
+<form method="POST" action="/video/create">
+  <label>Video Idea:</label>
+  <select name="idea_id" required>
+    <% if (ideas.length === 0) { %>
+      <option disabled selected>No ideas found</option>
+    <% } else { %>
+      <% ideas.forEach(idea => { %>
+        <option value="<%= idea.id %>"><%= idea.viral_title %></option>
+      <% }) %>
+    <% } %>
+  </select>
+
+  <label>Folder Link:</label>
+  <input name="folder_link" required />
+
+  <label>Long Duration (minutes):</label>
+  <input name="long_duration" type="number" required />
+
+  <label>Short Duration (minutes):</label>
+  <input name="short_duration" type="number" required />
+
+  <h4>Statuses:</h4>
+  <label><input type="checkbox" name="en_long_status" value="1" /> EN Long</label>
+  <label><input type="checkbox" name="fr_long_status" value="1" /> FR Long</label>
+  <label><input type="checkbox" name="ar_long_status" value="1" /> AR Long</label>
+  <label><input type="checkbox" name="en_short_status" value="1" /> EN Short</label>
+  <label><input type="checkbox" name="fr_short_status" value="1" /> FR Short</label>
+  <label><input type="checkbox" name="ar_short_status" value="1" /> AR Short</label>
+
+  <button type="submit">Save Video</button>
+</form>

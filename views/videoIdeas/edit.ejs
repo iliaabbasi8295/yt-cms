@@ -1,0 +1,10 @@
+<h1>Edit Video Idea</h1>
+
+<form method="POST" action="/video-idea/edit/<%= idea.id %>">
+  <input name="details" placeholder="Details" value="<%= idea.details %>" required /> <!-- ✅ تغییر نام -->
+  <input name="why" placeholder="Why" value="<%= idea.why %>" required />
+  <input name="category" placeholder="Category" value="<%= idea.category %>" required />
+  <input name="viral_title" placeholder="Viral Title" value="<%= idea.viral_title %>" required />
+  <input name="thumbnail_desc" placeholder="Thumbnail Description" value="<%= idea.thumbnail_desc %>" required /> <!-- ✅ تغییر نام -->
+  <button type="submit">Update</button>
+</form>

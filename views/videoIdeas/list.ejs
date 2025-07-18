@@ -1,0 +1,48 @@
+<h1>Video Ideas</h1>
+
+<a href="/video-idea/create" class="btn-add">+ Add New Idea</a>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Viral Title</th>
+      <th>Details</th>
+      <th>Why</th>
+      <th>Category</th>
+      <th>Thumbnail Desc</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% ideas.forEach(idea => { %>
+    <tr>
+      <td><%= idea.id %></td>
+      <td><%= idea.viral_title %></td>
+      <td><%= idea.details %></td>
+      <td><%= idea.why %></td>
+      <td><%= idea.category %></td>
+      <td><%= idea.thumbnail_desc %></td>
+      <td style="white-space: nowrap">
+        <a
+          href="/video-idea/edit/<%= idea.id %>"
+          title="Edit"
+          class="icon-link"
+        >
+          <i class="fa-solid fa-pen"></i>
+        </a>
+        <a
+          href="#"
+          data-id="<%= idea.id %>"
+          class="delete-idea-link icon-link"
+          title="Delete"
+        >
+          <i class="fa-solid fa-trash"></i>
+        </a>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<script src="/js/videos.js"></script>

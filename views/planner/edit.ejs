@@ -1,0 +1,41 @@
+<h1>Edit Planner</h1>
+
+<form method="POST" action="/planner/edit/<%= planner.id %>">
+  <label>Video Idea:</label>
+  <p><strong><%= planner.viral_title || "N/A" %></strong></p>
+  <!-- در صورت نیاز می‌توانی video_id را hidden بگذاری -->
+  <input type="hidden" name="video_id" value="<%= planner.video_id %>" />
+
+  <label>Publish Date:</label>
+  <input name="publish_date" type="date" value="<%= planner.publish_date %>" required />
+
+  <label>Status:</label>
+  <select name="publish_status" required>
+    <option value="Scheduled" <% if (planner.publish_status === "Scheduled") { %>selected<% } %>>Scheduled</option>
+    <option value="Done" <% if (planner.publish_status === "Done") { %>selected<% } %>>Done</option>
+    <option value="Not Published" <% if (planner.publish_status === "Not Published") { %>selected<% } %>>Not Published</option>
+  </select>
+
+  <label>YouTube Long EN:</label>
+  <input name="youtube_long_en" value="<%= planner.youtube_long_en %>" />
+
+  <label>YouTube Long FR:</label>
+  <input name="youtube_long_fr" value="<%= planner.youtube_long_fr %>" />
+
+  <label>YouTube Long AR:</label>
+  <input name="youtube_long_ar" value="<%= planner.youtube_long_ar %>" />
+
+  <label>YouTube Short EN:</label>
+  <input name="youtube_short_en" value="<%= planner.youtube_short_en %>" />
+
+  <label>YouTube Short FR:</label>
+  <input name="youtube_short_fr" value="<%= planner.youtube_short_fr %>" />
+
+  <label>YouTube Short AR:</label>
+  <input name="youtube_short_ar" value="<%= planner.youtube_short_ar %>" />
+
+  <label>Extra Note:</label>
+  <textarea name="extra_note"><%= planner.extra_note %></textarea>
+
+  <button type="submit">Update</button>
+</form>

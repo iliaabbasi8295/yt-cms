@@ -1,0 +1,54 @@
+<h1>Edit Video</h1>
+
+<form method="POST" action="/video/edit/<%= video.id %>">
+  <label>Video Idea:</label>
+  <p><strong><%= video.viral_title %></strong></p>
+  <input type="hidden" name="idea_id" value="<%= video.idea_id %>" />
+
+  <label>Folder Link:</label>
+  <input name="folder_link" value="<%= video.folder_link %>" required />
+
+  <label>Long Duration (min):</label>
+  <input
+    name="long_duration"
+    type="number"
+    value="<%= video.long_duration %>"
+    required
+  />
+
+  <label>Short Duration (min):</label>
+  <input
+    name="short_duration"
+    type="number"
+    value="<%= video.short_duration %>"
+    required
+  />
+  <div class="statuses">
+    <h4>Statuses:</h4>
+    <label>
+      <input type="checkbox" name="en_long_status" value="1" <%=
+      video.en_long_status ? "checked" : "" %> /> EN Long
+    </label>
+    <label>
+      <input type="checkbox" name="fr_long_status" value="1" <%=
+      video.fr_long_status ? "checked" : "" %> /> FR Long
+    </label>
+    <label>
+      <input type="checkbox" name="ar_long_status" value="1" <%=
+      video.ar_long_status ? "checked" : "" %> /> AR Long
+    </label>
+    <label>
+      <input type="checkbox" name="en_short_status" value="1" <%=
+      video.en_short_status ? "checked" : "" %> /> EN Short
+    </label>
+    <label>
+      <input type="checkbox" name="fr_short_status" value="1" <%=
+      video.fr_short_status ? "checked" : "" %> /> FR Short
+    </label>
+    <label>
+      <input type="checkbox" name="ar_short_status" value="1" <%=
+      video.ar_short_status ? "checked" : "" %> /> AR Short
+    </label>
+  </div>
+  <button type="submit">Update</button>
+</form>

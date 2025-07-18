@@ -1,0 +1,45 @@
+<h1>Financial Receipts</h1>
+
+<div class="financial-actions">
+  <form
+    method="POST"
+    action="/financial-receipts/recalculate"
+    class="recalculate-form"
+  >
+    <button type="submit" class="btn btn-refresh">
+      <i class="fa-solid fa-rotate-right"></i>
+      Recalculate Receipts
+    </button>
+  </form>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Idea</th>
+      <th>Folder Link</th>
+      <th>Amount ($)</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% receipts.forEach(receipt => { %>
+    <tr>
+      <td><%= receipt.viral_title || "N/A" %></td>
+      <td>
+        <% if (receipt.folder_link) { %>
+        <a href="<%= receipt.folder_link %>" target="_blank">Open Folder</a>
+        <% } else { %> N/A <% } %>
+      </td>
+      <td>$<%= receipt.total_amount.toFixed(2) %></td>
+      <td>
+        <a href="#" class="delete-receipt-link" data-id="<%= receipt.id %>">
+          <i class="fa-solid fa-trash"></i>
+        </a>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<script src="/js/finannce.js"></script>

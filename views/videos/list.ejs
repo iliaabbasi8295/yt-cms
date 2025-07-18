@@ -1,0 +1,32 @@
+<h1>Videos</h1>
+
+<a href="/video/create" class="btn-add">+ Add New Video</a>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Folder</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% videos.forEach(video => { %>
+      <tr>
+        <td><%= video.viral_title %></td>
+        <td><%= video.folder_link %></td>
+        <td>
+          <a href="/video/edit/<%= video.id %>" title="Edit">
+            <i class="fa-solid fa-pen"></i>
+          </a>
+          <span class="action-separator">|</span>
+          <a href="#" class="delete-video-link" data-id="<%= video.id %>" title="Delete">
+            <i class="fa-solid fa-trash"></i>
+          </a>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<script src="/js/videos.js"></script>

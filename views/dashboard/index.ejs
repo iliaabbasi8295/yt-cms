@@ -1,0 +1,139 @@
+<h1>Dashboard</h1>
+
+<!-- === Dashboard Header === -->
+<div class="dashboard-header">
+  <div class="wallet-balance <%= walletBalance < 0 ? 'negative' : '' %>">
+    Wallet Balance: $<%= walletBalance.toFixed(2) %>
+  </div>
+  <div class="profile-manage">
+    <a href="/profile" class="btn-profile">Manage Profile</a>
+  </div>
+</div>
+
+<!-- === Statistics Cards === -->
+<div class="dashboard-cards">
+  <a href="/video-idea" class="card">
+    <div class="card-title">Total Video Ideas</div>
+    <div class="card-count"><%= stats.ideas %></div>
+  </a>
+  <a href="/videoReports/all" class="card">
+    <div class="card-title">Total Videos</div>
+    <div class="card-count"><%= stats.videos %></div>
+  </a>
+  <a href="/videoReports/ready" class="card">
+    <div class="card-title">Ready to Upload</div>
+    <div class="card-count"><%= stats.readyToUpload %></div>
+  </a>
+  <a href="/videoReports/scheduled" class="card">
+    <div class="card-title">Scheduled</div>
+    <div class="card-count"><%= stats.scheduled %></div>
+  </a>
+  <a href="/videoReports/uploaded" class="card">
+    <div class="card-title">Uploaded</div>
+    <div class="card-count"><%= stats.uploaded %></div>
+  </a>
+  <a href="/videoReports/in-progress" class="card">
+    <div class="card-title">In Progress</div>
+    <div class="card-count"><%= stats.inProgress %></div>
+  </a>
+</div>
+
+<!-- === Ready to Upload Table === -->
+<section>
+  <h2>Ready to Upload Videos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Idea</th>
+        <th>Folder Link</th>
+        <th>Publish Date</th>
+        <th>Publish Status</th>
+        <th>Upload</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% readyVideos.forEach(video => { %>
+      <tr>
+        <td><%= video.viral_title %></td>
+        <td>
+          <a href="<%= video.folder_link %>" target="_blank">Open Folder</a>
+        </td>
+        <td><%= video.publish_date || 'N/A' %></td>
+        <td>
+          <span
+            class="status <%= video.publish_status === 'Scheduled' ? 'scheduled' : 'ready' %>"
+          >
+            <%= video.publish_status || 'N/A' %>
+          </span>
+        </td>
+        <td>
+          <a href="#" class="btn-upload" data-id="<%= video.id %>">
+            <i class="fa-solid fa-file-arrow-up"></i>
+          </a>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</section>
+
+<!-- ✅ مودال آپلود -->
+<div class="modal-overlay" id="uploadModal">
+  <div class="modal-container" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <h3 class="modal-title">
+        <i class="fa-solid fa-cloud-arrow-up modal-icon"></i>
+        Upload YouTube Links
+      </h3>
+      <button class="modal-close" aria-label="Close modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form class="upload-form" method="POST" action="/planner/upload">
+        <input type="hidden" name="video_id" id="modalVideoId" />
+
+        <div class="form-grid">
+          <% ["Long EN","Long FR","Long AR","Short EN","Short FR","Short AR"].forEach((lang,index)=>{ %>
+          <div class="form-group order-<%= index %>">
+            <label class="form-label">
+              <i class="fa-solid <%= lang.includes('Long') ? 'fa-language' : 'fa-film' %>"></i>
+              YT <%= lang %>
+            </label>
+            <div class="input-group">
+              <span class="input-prefix">https://</span>
+              <input
+                type="url"
+                name="youtube_<%= lang.toLowerCase().replace(' ','_') %>"
+                class="form-input"
+                required
+              />
+            </div>
+          </div>
+          <% }) %>
+        </div>
+
+        <div class="form-footer">
+          <div class="form-group">
+            <label class="form-label">
+              <i class="fa-solid fa-calendar-check"></i>
+              Publish Status
+            </label>
+            <select name="publish_status" class="form-select">
+              <option value="Scheduled">Scheduled</option>
+              <option value="Done">Done</option>
+              <option value="Not Published">Not Published</option>
+            </select>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <i class="fa-solid fa-floppy-disk"></i> Save Upload
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="/js/modal.js"></script>

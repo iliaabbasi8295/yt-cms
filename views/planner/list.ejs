@@ -1,0 +1,37 @@
+<h1>Planner</h1>
+<a href="/planner/create" class="btn-add">+ Add New Plan</a>
+
+<table>
+  <thead>
+    <tr>
+      <th>Idea</th>
+      <th>Publish Date</th>
+      <th>Publish Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% planners.forEach(plan => { %>
+    <tr>
+      <td><%= plan.viral_title || 'N/A' %></td>
+      <td><%= plan.publish_date %></td>
+      <td><%= plan.publish_status %></td>
+      <td>
+        <a href="/planner/edit/<%= plan.id %>" title="Edit">
+          <i class="fa-solid fa-pen"></i>
+        </a>
+        <span class="action-separator">|</span>
+        <a
+          href="#"
+          class="delete-plan-link"
+          data-id="<%= plan.id %>"
+          title="Delete"
+        >
+          <i class="fa-solid fa-trash"></i>
+        </a>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<script src="/js/videos.js"></script>

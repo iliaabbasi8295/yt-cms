@@ -1,0 +1,95 @@
+<h1><%= title %></h1>
+
+<table border="1" cellpadding="8">
+  <thead>
+    <tr>
+      <th>Viral Title</th>
+      <th>Category</th>
+      <th>Folder Link</th>
+      <th>Long Duration</th>
+      <th>Short Duration</th>
+      <th>EN Long</th>
+      <th>FR Long</th>
+      <th>AR Long</th>
+      <th>EN Short</th>
+      <th>FR Short</th>
+      <th>AR Short</th>
+      <th>Publish Date</th>
+      <th>Publish Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% videos.forEach(video => { %>
+      <tr>
+        <td><%= video.viral_title %></td>
+        <td><%= video.category %></td>
+        <td>
+          <% if (video.folder_link) { %>
+            <a href="<%= video.folder_link %>" target="_blank">Video Link</a>
+          <% } else { %>
+            N/A
+          <% } %>
+        </td>
+        <td><%= video.long_duration %></td>
+        <td><%= video.short_duration %></td>
+
+        <!-- EN Long -->
+        <td>
+          <% if (video.en_long_status) { %>
+            <i class="fa-solid fa-circle-check status-ok"></i>
+          <% } else { %>
+            <i class="fa-solid fa-circle-xmark status-fail"></i>
+          <% } %>
+        </td>
+
+        <!-- FR Long -->
+        <td>
+          <% if (video.fr_long_status) { %>
+            <i class="fa-solid fa-circle-check status-ok"></i>
+          <% } else { %>
+            <i class="fa-solid fa-circle-xmark status-fail"></i>
+          <% } %>
+        </td>
+
+        <!-- AR Long -->
+        <td>
+          <% if (video.ar_long_status) { %>
+            <i class="fa-solid fa-circle-check status-ok"></i>
+          <% } else { %>
+            <i class="fa-solid fa-circle-xmark status-fail"></i>
+          <% } %>
+        </td>
+
+        <!-- EN Short -->
+        <td>
+          <% if (video.en_short_status) { %>
+            <i class="fa-solid fa-circle-check status-ok"></i>
+          <% } else { %>
+            <i class="fa-solid fa-circle-xmark status-fail"></i>
+          <% } %>
+        </td>
+
+        <!-- FR Short -->
+        <td>
+          <% if (video.fr_short_status) { %>
+            <i class="fa-solid fa-circle-check status-ok"></i>
+          <% } else { %>
+            <i class="fa-solid fa-circle-xmark status-fail"></i>
+          <% } %>
+        </td>
+
+        <!-- AR Short -->
+        <td>
+          <% if (video.ar_short_status) { %>
+            <i class="fa-solid fa-circle-check status-ok"></i>
+          <% } else { %>
+            <i class="fa-solid fa-circle-xmark status-fail"></i>
+          <% } %>
+        </td>
+
+        <td><%= video.publish_date ? video.publish_date : '-' %></td>
+        <td><%= video.publish_status ? video.publish_status : '-' %></td>
+      </tr>
+    <% }) %>
+  </tbody>
+</table>
